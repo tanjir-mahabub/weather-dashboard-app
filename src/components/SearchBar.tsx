@@ -20,12 +20,12 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         type="text"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        className="px-4 py-2 border rounded-lg w-full"
+        className="px-4 py-2 rounded-lg w-full bg-slate-400 border"
         placeholder="Enter city name"
       />
       <button
         onClick={handleSearch}
-        className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+        className="px-4 pt-2 pb-2.5 bg-slate-500 hover:bg-slate-700 border hover:border-slate-400 text-white rounded-lg"
       >
         Search
       </button>

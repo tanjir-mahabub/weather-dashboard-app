@@ -7,19 +7,24 @@ interface CityHistoryProps {
 
 const CityHistory: React.FC<CityHistoryProps> = ({ history, onSelectCity }) => {
   return (
-    <div className="mt-6">
-      <h3 className="text-xl font-bold">Search History</h3>
-      <ul className="mt-2 space-y-2">
-        {history.map((city) => (
-          <li
-            key={city}
-            className="cursor-pointer text-blue-500"
-            onClick={() => onSelectCity(city)}
-          >
-            {city}
-          </li>
-        ))}
-      </ul>
+    <div className="flex flex-col gap-2 bg-slate-400 rounded-lg drop-shadow border p-4">
+      <h2 className="text-sm sm:text-xl font-bold mb-2">Search History</h2>
+      {history.length > 0 ? (
+        <ul className='flex gap-3'>
+          {history.map((city, index) => (
+            <li key={index} className="mb-2">
+              <button
+                className="text-sm text-slate-300 bg-slate-800 rounded-2xl shadow-sm px-3 py-[5px] pb-2 hover:underline"
+                onClick={() => onSelectCity(city)}
+              >
+                {city}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-gray-500">No search history available.</p>
+      )}
     </div>
   );
 };
