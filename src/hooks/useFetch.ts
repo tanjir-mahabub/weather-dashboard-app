@@ -29,9 +29,11 @@ export const useFetch = (city: string) => {
         if (response.status === 200) {
           setData(response.data);
         } else {
+          setData(null); // Clear the data when an error occurs
           setError(`Error: ${response.status} - ${response.statusText}`);
         }
       } catch (err) {
+        setData(null); // Clear the data when an error occurs
         if (axios.isAxiosError(err)) {
           if (err.response) {
             if (err.response.status === 404) {

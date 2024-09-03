@@ -32,7 +32,11 @@ const App: React.FC = () => {
         <h1 className="text-2xl sm:text-4xl font-extrabold text-white mb-4 text-center">Weather Dashboard</h1>
         <SearchBar onSearch={handleSearch} />
         <div className="flex">
-          {data && <WeatherCard data={data} error={error} />}
+          {data ? <WeatherCard data={data} error={error} /> : (
+            <div className="flex justify-center items-center h-60 w-full mx-auto p-4 bg-red-300 border rounded-lg shadow-md">
+            <p className="text-red-800 font-semibold">{error}</p>
+          </div>
+          )}
         </div>
         <CityHistory history={history} onSelectCity={handleSelectCity} />
       </div>
