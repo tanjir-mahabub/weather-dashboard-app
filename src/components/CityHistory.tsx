@@ -7,7 +7,7 @@ interface CityHistoryProps {
 
 const CityHistory: React.FC<CityHistoryProps> = ({ history, onSelectCity }) => {
   return (
-    <div className="flex flex-col gap-2 bg-slate-400 rounded-lg drop-shadow border p-4">
+    <div className="flex flex-col gap-2 bg-slate-300 rounded-lg drop-shadow border p-4">
       <h2 className="text-sm sm:text-xl font-bold mb-2">Search History</h2>
       {history.length > 0 ? (
         <ul className='flex gap-3'>

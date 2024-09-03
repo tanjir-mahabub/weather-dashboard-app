@@ -34,7 +34,11 @@ export const useFetch = (city: string) => {
       } catch (err) {
         if (axios.isAxiosError(err)) {
           if (err.response) {
-            setError(`Error: ${err.response.status} - ${err.response.statusText}`);
+            if (err.response.status === 404) {
+              setError('City not found. Please try again with a different city.');
+            } else {
+              setError(`Error: ${err.response.status} - ${err.response.statusText}`);
+            }
           } else if (err.request) {
             setError('Network error. Please check your connection.');
           } else {
