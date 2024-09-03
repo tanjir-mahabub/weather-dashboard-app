@@ -20,7 +20,7 @@ To get started with the Weather Dashboard App, follow these steps:
 1. **Clone the Repository:**
 
 ```bash
-   git clone https://github.com/your-username/weather-dashboard-app.git
+git clone https://github.com/your-username/weather-dashboard-app.git
 ```
 
 2. **Navigate to the Project Directory:**
