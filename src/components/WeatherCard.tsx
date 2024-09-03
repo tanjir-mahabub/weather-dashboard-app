@@ -28,7 +28,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data, error }) => {
 
   return (
     <div
-      className="flex justify-around items-center h-60 gap-10 w-full mx-auto p-4 bg-slate-300 border rounded-lg shadow-md transition-opacity duration-500 ease-in-out"
+      className="flex justify-around items-center h-60 gap-10 w-full mx-auto p-4 bg-slate-300 border rounded-lg shadow-md transition-opacity duration-700 ease-in-out"
     >
       <div className='flex flex-col justify-center gap-1'>
         <h2 className="text-2xl font-bold">{data.name}</h2>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { WeatherData } from '../types/WeatherData';
+import { useDebounce } from './useDebounce';
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = import.meta.env.VITE_API_URL;
@@ -10,9 +11,11 @@ export const useFetch = (city: string) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  const debouncedCity = useDebounce(city, 300); // Debounce city input by 300ms
+
   useEffect(() => {
     const fetchData = async () => {
-      if (!city) {
+      if (!debouncedCity) {
         setData(null);
         setLoading(false);
         return;
@@ -23,17 +26,17 @@ export const useFetch = (city: string) => {
 
       try {
         const response = await axios.get(
-          `${API_URL}?q=${city}&appid=${API_KEY}&units=metric`
+          `${API_URL}?q=${debouncedCity}&appid=${API_KEY}&units=metric`
         );
 
         if (response.status === 200) {
           setData(response.data);
         } else {
-          setData(null); // Clear the data when an error occurs
+          setData(null); 
           setError(`Error: ${response.status} - ${response.statusText}`);
         }
       } catch (err) {
-        setData(null); // Clear the data when an error occurs
+        setData(null); 
         if (axios.isAxiosError(err)) {
           if (err.response) {
             if (err.response.status === 404) {
@@ -55,7 +58,7 @@ export const useFetch = (city: string) => {
     };
 
     fetchData();
-  }, [city]);
+  }, [debouncedCity]);
 
   return { data, loading, error };
 };

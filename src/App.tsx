@@ -8,7 +8,7 @@ import { useHistory } from './hooks/useHistory';
 
 const App: React.FC = () => {
   const [city, setCity] = useLocalStorage('lastCity', ''); // Save and retrieve last city
-  const { data, error } = useFetch(city);
+  const { data, loading, error } = useFetch(city);
   const { history, addCity } = useHistory();
 
   const handleSearch = (newCity: string) => {
@@ -32,10 +32,12 @@ const App: React.FC = () => {
         <h1 className="text-2xl sm:text-4xl font-extrabold text-white mb-4 text-center">Weather Dashboard</h1>
         <SearchBar onSearch={handleSearch} />
         <div className="flex">
-          {data ? <WeatherCard data={data} error={error} /> : (
-            <div className="flex justify-center items-center h-60 w-full mx-auto p-4 bg-red-300 border rounded-lg shadow-md">
-            <p className="text-red-800 font-semibold">{error}</p>
-          </div>
+          {loading ? (
+            <div className="flex justify-center items-center h-60 w-full mx-auto p-4">
+              <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full text-white"></div>
+            </div>
+          ) : (
+            <WeatherCard data={data} error={error} />
           )}
         </div>
         <CityHistory history={history} onSelectCity={handleSelectCity} />
